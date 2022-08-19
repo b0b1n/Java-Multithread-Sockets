@@ -13,7 +13,7 @@ public class ServerMain {
 		//Infinite while loop, wait for new connections
 		while (true) {
 			Socket socket = server_socket.accept();
-			ServerThread server_thread = new ServerThread(socket)
+			ServerThread server_thread = new ServerThread(socket);
 			Thread thread = new Thread(server_thread);
 			thread.start();
 		}
