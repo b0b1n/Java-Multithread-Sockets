@@ -1,16 +1,16 @@
 # Multithread-Sockets
-TCP program with multiple threads using Java
-
-# ServerMain
+* TCP program with multiple threads using Java
+## --------------------------------------------------- Branches
+### ServerMain
 Writing the ServerMain class that is going to launch the server
 
-# ServerThread
+### ServerThread
 Writing the ServerThread class that specifies the instructions to be ran for each thread, in this case, each client connected 
 
-# ServerClient
+### ServerClient
 The client class
 
-# Client_Identification
+### Client_Identification
 - Modified the ServerMain class, where when it calls the server_thread it passes itself (this).
 And whenever a Client is disconnected is displays its ID.
 
