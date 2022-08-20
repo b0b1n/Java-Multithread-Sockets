@@ -15,16 +15,18 @@ public class ServerThread implements Runnable {
 	 * access it
 	 */
 	private Socket socket;
-
-	public ServerThread(Socket socket) {
+	private ServerMain server_main;
+	
+	public ServerThread(Socket socket, ServerMain server_main) {
 		this.socket = socket;
+		this.server_main = server_main;
 	}
 
 	@Override
 	public void run() {
 		try {
-			
-			System.out.println("A Client has connected");
+			int client_number = server_main.getClientNumber();
+			System.out.println("Client "+client_number+" has connected");
 			// I/O buffers:
 			/*
 			 * Data coming from the client to the socket
@@ -35,12 +37,12 @@ public class ServerThread implements Runnable {
 			 */
 			PrintWriter out_socket = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
 
-			out_socket.println("Welcome Mr.Client! What can I call you ?"); // sending a message to the Client
+			out_socket.println("Welcome Client "+client_number+"! What can I call you ?"); // sending a message to the Client
 			String message = in_socket.readLine(); // Storing what the Client wrote ("Thanks Mr.Server!")
 			System.out.println(" 'Mr.Client' says ::: " + message); // display Client's message in the console
 
 			socket.close();
-			System.out.println(socket.isClosed() ? "socket is closed." : " socket not closed yet.");
+			System.out.println("Client "+client_number+" is disconnected.");
 
 		} catch (Exception e) {
 			e.printStackTrace();
