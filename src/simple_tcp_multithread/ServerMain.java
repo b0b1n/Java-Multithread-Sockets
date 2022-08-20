@@ -6,6 +6,12 @@ import java.net.Socket;
 
 public class ServerMain {
 	
+	private int clientnumber = 1;
+	
+	public int getClientNumber() {
+		return clientnumber++;
+	}
+	
 	public ServerMain() throws IOException {
 		ServerSocket server_socket = new ServerSocket(2022);
 		System.out.println("Port 2022 is now open.");
@@ -13,7 +19,7 @@ public class ServerMain {
 		//Infinite while loop, wait for new connections
 		while (true) {
 			Socket socket = server_socket.accept();
-			ServerThread server_thread = new ServerThread(socket);
+			ServerThread server_thread = new ServerThread(socket,this);
 			Thread thread = new Thread(server_thread);
 			thread.start();
 		}
